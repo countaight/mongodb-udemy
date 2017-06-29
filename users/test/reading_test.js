@@ -19,4 +19,8 @@ describe('Reading users out of the database', () => {
 				done();
 			});
 	});
+
+	it('finds one', {
+
+	});
 })
