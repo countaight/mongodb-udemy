@@ -6,7 +6,7 @@ describe('Updating records', () => {
 	let joe;
 
 	beforeEach((done) => {
-		joe = new User({ name: 'Joe' });
+		joe = new User({ name: 'Joe', postCount: 20 });
 		joe.save()
 			.then(() => done());
 	});
@@ -22,7 +22,7 @@ describe('Updating records', () => {
 	};
 
 	it('instance type using set n save', (done) => {
-		joe.set({ name: 'Alex' });
+		joe.set('name', 'Alex');
 		assertName(joe.save(), done);
 	});
 
@@ -49,5 +49,14 @@ describe('Updating records', () => {
 			User.findByIdAndUpdate(joe._id, { name: 'Alex' }),
 			done
 		);
+	});
+
+	it('a user can have their post count incremented by 1', (done) => {
+		User.update({ name: 'Joe' }, { $inc: { postCount: 1 } })
+			.then(() => User.findOne({ name: 'Joe' }))
+			.then((user) => {
+				assert(user.postCount === 21);
+				done();
+			});
 	});
 });
