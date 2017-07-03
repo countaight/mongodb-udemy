@@ -12,8 +12,8 @@ describe('subdocuments', () => {
 		joe.save()
 			.then(() => User.findOne({ name: 'Joe' }))
 			.then((user) => {
-				assert(user.posts[0] === 'PostTitle');
+				assert(user.posts[0].title === 'PostTitle');
 				done();
 			});
-	})
-})
+	});
+});
