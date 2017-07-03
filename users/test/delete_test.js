@@ -47,4 +47,4 @@ describe('Deleting a user', () => {
 				done();
 			});
 	});
-})
+});

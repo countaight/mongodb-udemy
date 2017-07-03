@@ -16,4 +16,4 @@ describe('Virtual types', () => {
 				done();
 			});
 	});
-})
+});
