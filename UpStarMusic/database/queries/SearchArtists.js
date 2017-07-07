@@ -27,7 +27,10 @@ module.exports = (criteria, sortProperty, offset = 0, limit = 20) => {
 
 const buildQuery = (criteria) => {
 	const { name, age, yearsActive } = criteria;
-	const query = { name: { $regex: `${name}`, $options: 'i' } };
+	// const query = { name: { $regex: `${name}`, $options: 'i' } };
+	const query = {};
+
+	if (name) { query.$text = { $search: name }; }
 	if (age) { query.age = { $gte: age.min, $lte: age.max }; }
 	if (yearsActive) {
 		query.yearsActive = { $gte: yearsActive.min, $lte: yearsActive.max };
