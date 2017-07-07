@@ -16,10 +16,11 @@ describe('Drivers controller', () => {
 					.send({ email: "test@test.com" })
 					.end((err, response) => {
 
-						Driver.count(newCount => {
-							assert(count + 1 === newCount);
-							done();
-						});
+						Driver.count()
+							.then(newCount => {
+								assert(count + 1 === newCount);
+								done();
+							});
 
 					});
 
