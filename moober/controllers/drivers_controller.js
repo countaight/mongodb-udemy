@@ -18,9 +18,7 @@ module.exports = {
 		const driverProps = req.body;
 
 		Driver.findByIdAndUpdate(driverId, driverProps)
-			.then(() => {
-				Driver.findOne({ _id: driverId });
-			})
+			.then(() => Driver.findById(driverId))
 			.then(driver => res.send(driver))
 			.catch(next);
 	}
