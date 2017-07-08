@@ -32,7 +32,7 @@ describe('Drivers controller', () => {
 
 		driver.save().then(() => {
 			request(app)
-				.put(`/api/drivers/${driver.id}`)
+				.put(`/api/drivers/${driver._id}`)
 				.send({ driving: true })
 				.end(() => {
 					Driver.findOne({ email: 't@t.com' })
@@ -49,7 +49,7 @@ describe('Drivers controller', () => {
 
 		driver.save().then(() => {
 			request(app)
-				.delete(`/api/drivers/${driver.id}`)
+				.delete(`/api/drivers/${driver._id}`)
 				.end(() => {
 					Driver.count().then(count => {
 						assert(count === 0);
